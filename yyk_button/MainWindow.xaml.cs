@@ -178,6 +178,7 @@ namespace yyk_button
                     {
                         int count = Port1.Read(readBuffer, 0, Port1.ReadBufferSize);
                         string SerialIn = string.Join("", readBuffer.Select(t => t.ToString()).ToArray());
+                        
                         if (SerialIn.Contains("0"))
                         {
                             if (SerialIn.Contains("255"))
@@ -185,8 +186,10 @@ namespace yyk_button
                                 Dispatcher.BeginInvoke(new delegate1(SetText));
                             }
                             else
+                            {
                                 Dispatcher.BeginInvoke(new delegate1(SetText1));
-                        }
+                            }
+                        }                        
                     }
                     catch (Exception) { }
                 }
@@ -198,6 +201,7 @@ namespace yyk_button
                 }
 
             }
+            
         }
 
         //当关闭程序时，退出所有环境
