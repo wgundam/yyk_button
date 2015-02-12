@@ -148,7 +148,7 @@ namespace yyk_button
         public void SetText1()
         {
             DBProcessed = false;
-            textBox2.Text = "摇摇看等待开启.....";
+            textBox2.Text = "按钮已连接，等待开启.....";
         }
         public void SetText2()
         {
@@ -178,10 +178,10 @@ namespace yyk_button
                     {
                         int count = Port1.Read(readBuffer, 0, Port1.ReadBufferSize);
                         string SerialIn = string.Join("", readBuffer.Select(t => t.ToString()).ToArray());
-                        
-                        if (SerialIn.Contains("0"))
+                        Console.WriteLine(SerialIn);
+                        if (SerialIn.Contains("000000"))
                         {
-                            if (SerialIn.Contains("255"))
+                            if (SerialIn.Contains("000000255255255255"))
                             {
                                 Dispatcher.BeginInvoke(new delegate1(SetText));
                             }
@@ -189,9 +189,12 @@ namespace yyk_button
                             {
                                 Dispatcher.BeginInvoke(new delegate1(SetText1));
                             }
-                        }                        
+                        }
                     }
-                    catch (Exception) { }
+                    catch (Exception) 
+                    {
+                        Dispatcher.BeginInvoke(new delegate1(SetText4));
+                    }
                 }
                 else
                 {
@@ -199,9 +202,7 @@ namespace yyk_button
                     TimeSpan waitTime = new TimeSpan(0, 0, 0, 0, 50);
                     Thread.Sleep(waitTime);
                 }
-
             }
-            
         }
 
         //当关闭程序时，退出所有环境
