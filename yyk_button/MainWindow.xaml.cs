@@ -179,9 +179,9 @@ namespace yyk_button
                         int count = Port1.Read(readBuffer, 0, Port1.ReadBufferSize);
                         string SerialIn = string.Join("", readBuffer.Select(t => t.ToString()).ToArray());
                         Console.WriteLine(SerialIn);
-                        if (SerialIn.Contains("000000"))
+                        if (SerialIn.Contains("000"))
                         {
-                            if (SerialIn.Contains("000000255255255255"))
+                            if (SerialIn.Contains("000255255"))
                             {
                                 Dispatcher.BeginInvoke(new delegate1(SetText));
                             }
