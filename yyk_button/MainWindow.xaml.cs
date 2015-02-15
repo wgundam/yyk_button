@@ -137,18 +137,18 @@ namespace yyk_button
       
         public void SetText ()
         {
-            textBox2.Text = "摇摇看开启成功！";
             if (DBProcessed == false)
             {
                 DB_Process();
-                DBProcessed = true;     
+                DBProcessed = true; 
+                textBox2.Text = "摇摇看开启成功！"; 
             }
 
         }
         public void SetText1()
         {
             DBProcessed = false;
-            textBox2.Text = "按钮已连接，等待开启.....";
+            textBox2.Text = "按钮已连接，等待开启";
         }
         public void SetText2()
         {
@@ -162,7 +162,7 @@ namespace yyk_button
 
         public void SetText4()
         {
-            DBProcessed = false;
+            //DBProcessed = false;
             textBox2.Text = "按钮失去连接.....";
         }
 
@@ -178,10 +178,10 @@ namespace yyk_button
                     {
                         int count = Port1.Read(readBuffer, 0, Port1.ReadBufferSize);
                         string SerialIn = string.Join("", readBuffer.Select(t => t.ToString()).ToArray());
-                        Console.WriteLine(SerialIn);
+                        //Console.WriteLine(SerialIn);
                         if (SerialIn.Contains("000"))
                         {
-                            if (SerialIn.Contains("000255255"))
+                            if (SerialIn.Contains("255"))
                             {
                                 Dispatcher.BeginInvoke(new delegate1(SetText));
                             }
